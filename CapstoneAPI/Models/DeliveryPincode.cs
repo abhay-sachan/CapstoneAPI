@@ -6,10 +6,11 @@ namespace CapstoneAPI.Models
     public class DeliveryPincode
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PId { get; set; }
+        [Required]
+
         public int PinCode { get; set; }
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required]
         public string? EmailId { get; set; }
         [ForeignKey("EmailId")]
         public virtual Register? Register { get; set; }
