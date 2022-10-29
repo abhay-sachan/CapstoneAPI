@@ -27,8 +27,6 @@ namespace CapstoneAPI.Models
         [Required]
         public int ShippingCost { get; set; }
 
-        [Required]
-        public int ProductQuantity { get; set; }
 
     }
 }
