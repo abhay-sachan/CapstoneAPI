@@ -33,7 +33,10 @@ namespace CapstoneAPI.Models
 
         [NotMapped]
         public virtual ICollection<Order> Order { get; set; }
-
+        [NotMapped]
+        public virtual ICollection<Cart> Cart { get; set; }
+        [NotMapped]
+        public virtual ICollection<Wishlist> Wishlist { get; set; }
 
     }
 }

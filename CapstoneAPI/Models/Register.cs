@@ -31,6 +31,13 @@ namespace CapstoneAPI.Models
         [Required]
         [StringLength(50)]
         public string UserType { get; set; }
+        [Required]
+        [StringLength(200)]
+        public string SecurityQuestion { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string SecurityAnswer { get; set; }
 
         [NotMapped]
         public virtual ICollection<Address> Address { get; set; }

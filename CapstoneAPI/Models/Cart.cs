@@ -3,25 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CapstoneAPI.Models
 {
-    public class Order
+    public class Cart
     {
         [Key]
-        public int OrderId { get; set; }
-        public string? EmailId { get; set; }
-        [ForeignKey("EmailId")]
-        public virtual Register? Register { get; set; }
-
+        public int CartId { get; set; }
+        [Required]
         public int? ProductId { get; set; }
         [ForeignKey("ProductId")]
         public virtual Product? Product { get; set; }
 
         [Required]
-        public DateTime OrderDate { get; set; }
-
-        [Required]
         [StringLength(100)]
         public string ProductName { get; set; }
-
         [Required]
         public string ProductImage { get; set; }
         [Required]
@@ -35,13 +28,7 @@ namespace CapstoneAPI.Models
         public int ShippingCost { get; set; }
 
         [Required]
-        public int QuantityPurchased { get; set; }
-
-        [Required]
-        public int TotalPrice { get; set; }
-        
-        public string DeliveryStatus { get; set; }
-        public bool ReturnStatus { get; set; }
+        public int ProductQuantity { get; set; }
 
     }
 }

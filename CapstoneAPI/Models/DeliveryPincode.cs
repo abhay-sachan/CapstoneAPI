@@ -6,7 +6,6 @@ namespace CapstoneAPI.Models
     public class DeliveryPincode
     {
         [Key]
-        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PinCode { get; set; }
         [Key]
