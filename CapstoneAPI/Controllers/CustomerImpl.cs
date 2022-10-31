@@ -295,7 +295,7 @@ namespace CapstoneAPI.Controllers
 
         public List<Product> ShowProductByName(string ProdName)
         {
-            return db.Product.Where(x => x.ProductType == ProdName).ToList();
+            return db.Product.Where(x => x.ProductName == ProdName).ToList();
         }
     }
 

@@ -12,25 +12,20 @@ namespace CapstoneAPI.Controllers
     {
         readonly CapstoneAPIDbContext db;
         readonly ICustomer cust;
-
-
-
         public CustomerController(CapstoneAPIDbContext db, ICustomer cust)
         {
             this.db = db;
             this.cust = cust;
         }
         [HttpPost]
-        [Route("api/Customer/AddOrder")]
+        [Route("/api/Customer/AddOrder")]
         public bool AddOrder([FromBody] Order o)
         {
             return cust.AddOrder(o);
         }
 
-
-
         [HttpGet]
-        [Route("api/Customer/ShowAllOrders/{EmailId}")]
+        [Route("/api/Customer/ShowAllOrders/{EmailId}")]
         public List<Order> ShowAllOrders(string EmailId)
         {
             return cust.ShowAllOrders(EmailId);
@@ -39,7 +34,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowAllProducts")]
+        [Route("/api/Customer/ShowAllProducts")]
         public List<Product> ShowAllProducts()
         {
             return cust.ShowAllProducts();
@@ -48,7 +43,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowProductByCategory/{ProdType}")]
+        [Route("/api/Customer/ShowProductByCategory/{ProdType}")]
         public List<Product> ShowProductByCategory(string ProdType)
         {
             return cust.ShowProductByCategory(ProdType);
@@ -57,7 +52,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowProductByName/{ProdName}")]
+        [Route("/api/Customer/ShowProductByName/{ProdName}")]
         public List<Product> ShowProductByName(string ProdName)
         {
             return cust.ShowProductByName(ProdName);
@@ -66,7 +61,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpPost]
-        [Route("api/Customer/AddShippingAddress")]
+        [Route("/api/Customer/AddShippingAddress")]
         public bool AddShippingAddress([FromBody] Address a)
         {
             return cust.AddShippingAddress(a);
@@ -75,7 +70,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpPost]
-        [Route("api/Customer/AddToCart")]
+        [Route("/api/Customer/AddToCart")]
         public bool AddToCart([FromBody] Cart c)
         {
             return cust.AddToCart(c);
@@ -84,7 +79,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpPost]
-        [Route("api/Customer/AddToWishList")]
+        [Route("/api/Customer/AddToWishList")]
         public bool AddToWishList([FromBody] Wishlist w)
         {
             return cust.AddToWishList(w);
@@ -93,7 +88,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpPut]
-        [Route("api/Customer/GiveProductRating/{ProdId}/{rating}")]
+        [Route("/api/Customer/GiveProductRating/{ProdId}/{rating}")]
         public bool GiveProductRating(int ProdId, float rating)
         {
             return cust.GiveProductRating(ProdId, rating);
@@ -102,7 +97,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowOrderStatus/{OrderId}")]
+        [Route("/api/Customer/ShowOrderStatus/{OrderId}")]
         public string ShowOrderStatus(int OrderId)
         {
             return cust.ShowOrderStatus(OrderId);
@@ -111,7 +106,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpPut]
-        [Route("api/Customer/CancelOrReturnOrder/{OrderId}/{NewStatus}")]
+        [Route("/api/Customer/CancelOrReturnOrder/{OrderId}/{NewStatus}")]
         public bool CancelOrReturnOrder(int OrderId, string NewStatus)
         {
             return cust.CancelOrReturnOrder(OrderId, NewStatus);
@@ -120,7 +115,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/GetReturnStatus/{OrderId}")]
+        [Route("/api/Customer/GetReturnStatus/{OrderId}")]
         public bool GetReturnStatus(int OrderId)
         {
             return cust.GetReturnStatus(OrderId);
@@ -129,7 +124,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpDelete]
-        [Route("api/Customer/DeleteItemFromCart/{CartId}")]
+        [Route("/api/Customer/DeleteItemFromCart/{CartId}")]
         public bool DeleteItemFromCart(int CartId)
         {
             return cust.DeleteItemFromCart(CartId);
@@ -138,7 +133,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpDelete]
-        [Route("api/Customer/DeleteItemFromWishlist/{WishlistId}")]
+        [Route("/api/Customer/DeleteItemFromWishlist/{WishlistId}")]
         public bool DeleteItemFromWishlist(int WishlistId)
         {
             return cust.DeleteItemFromWishlist(WishlistId);
@@ -147,7 +142,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowAllCart/{EmailId}")]
+        [Route("/api/Customer/ShowAllCart/{EmailId}")]
         public List<Cart> ShowAllCart(string EmailId)
         {
             return cust.ShowAllCart(EmailId);
@@ -156,7 +151,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowAllWishlist/{EmailId}")]
+        [Route("/api/Customer/ShowAllWishlist/{EmailId}")]
         public List<Wishlist> ShowAllWishlist(string EmailId)
         {
             return cust.ShowAllWishlist(EmailId);
@@ -165,7 +160,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpDelete]
-        [Route("api/Customer/EmptyCart/{EmailId}")]
+        [Route("/api/Customer/EmptyCart/{EmailId}")]
         public bool EmptyCart(string EmailId)
         {
             return cust.EmptyCart(EmailId);
@@ -174,7 +169,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpDelete]
-        [Route("api/Customer/EmptyWishlist/{EmailId}")]
+        [Route("/api/Customer/EmptyWishlist/{EmailId}")]
         public bool EmptyWishlist(string EmailId)
         {
             return cust.EmptyWishlist(EmailId);
@@ -183,7 +178,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowLatestOrder")]
+        [Route("/api/Customer/ShowLatestOrder")]
         public Order ShowLatestOrder()
         {
             return cust.ShowLatestOrder();
@@ -192,7 +187,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/ShowAllShippingAddress/{EmailId}")]
+        [Route("/api/Customer/ShowAllShippingAddress/{EmailId}")]
         public List<Address> ShowAllShippingAddress(string EmailId)
         {
             return cust.ShowAllShippingAddress(EmailId);
@@ -201,7 +196,7 @@ namespace CapstoneAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/Customer/CheckPinCode/{Pincode}/{EmailId}")]
+        [Route("/api/Customer/CheckPinCode/{Pincode}/{EmailId}")]
         public bool CheckPinCode(int Pincode, string EmailId)
         {
             return cust.CheckPinCode(Pincode, EmailId);
