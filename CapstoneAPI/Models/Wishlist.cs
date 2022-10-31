@@ -8,13 +8,16 @@ namespace CapstoneAPI.Models
         [Key]
         public int WishListId { get; set; }
         [Required]
-        public int? ProductId { get; set; }
-        [ForeignKey("ProductId")]
-        public virtual Product? Product { get; set; }
-
+        public int ProductId { get; set; }
+       
+        [Required]
+        [StringLength(100)]
+        public string ProductType { get; set; }
         [Required]
         [StringLength(100)]
         public string ProductName { get; set; }
+        [StringLength(100)]
+        public string ProductBrand { get; set; }
         [Required]
         public string ProductImage { get; set; }
         [Required]

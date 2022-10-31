@@ -11,17 +11,19 @@ namespace CapstoneAPI.Models
         [ForeignKey("EmailId")]
         public virtual Register? Register { get; set; }
 
-        public int? ProductId { get; set; }
-        [ForeignKey("ProductId")]
-        public virtual Product? Product { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
         public DateTime OrderDate { get; set; }
 
         [Required]
         [StringLength(100)]
+        public string ProductType { get; set; }
+        [Required]
+        [StringLength(100)]
         public string ProductName { get; set; }
-
+        [StringLength(100)]
+        public string ProductBrand { get; set; }
         [Required]
         public string ProductImage { get; set; }
         [Required]

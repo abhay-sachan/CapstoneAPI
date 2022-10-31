@@ -12,10 +12,17 @@ namespace CapstoneAPI.Models
         public virtual Register? Register { get; set; }
         [Required]
         [StringLength(100)]
+        public string ProductType { get; set; }
+        [Required]
+        [StringLength(100)]
         public string ProductName { get; set; }
-
+        [Required]
+        [StringLength(100)]
+        public string ProductBrand { get; set; }
         [Required]
         public string ProductImage { get; set; }
+        public string AdditonalProductImage1 { get; set; }
+        public string AdditonalProductImage2 { get; set; }
         [Required]
         public int ProductPrice { get; set; }
 
@@ -30,13 +37,6 @@ namespace CapstoneAPI.Models
         public int ProductQuantity { get; set; }
         public float Rating { get; set; }
         public int NoOfRatings { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<Order> Order { get; set; }
-        [NotMapped]
-        public virtual ICollection<Cart> Cart { get; set; }
-        [NotMapped]
-        public virtual ICollection<Wishlist> Wishlist { get; set; }
 
     }
 }
