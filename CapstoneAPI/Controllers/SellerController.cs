@@ -1,4 +1,5 @@
 ﻿using CapstoneAPI.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.Intrinsics.Arm;
@@ -7,6 +8,7 @@ namespace CapstoneAPI.Controllers
 {
     [Route("api/Seller")]
     [ApiController]
+    [EnableCors(PolicyName = "CapstoneProject")]
     public class SellerController : ControllerBase
     {
         readonly CapstoneAPIDbContext db;
