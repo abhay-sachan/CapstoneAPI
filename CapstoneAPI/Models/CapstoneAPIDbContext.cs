@@ -11,6 +11,8 @@ namespace CapstoneAPI.Models
         public DbSet<Wishlist> Wishlist { get; set; }
         public DbSet<Cart> Cart { get; set; }
 
+        public DbSet<Product> Product { get; set; }
+
         //public CapstoneAPIDbContext() : base() { }
 
         //public CapstoneAPIDbContext(DbContextOptions<CapstoneAPIDbContext> options) : base(options) { }
