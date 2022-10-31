@@ -13,7 +13,7 @@ namespace CapstoneAPI.Controllers
     {
         readonly CapstoneAPIDbContext db;
         readonly ISeller sell;
-        public SellerController(CapstoneAPIDbContext db, ISeller adm)
+        public SellerController(CapstoneAPIDbContext db, ISeller sell)
         {
             this.db = db;
             this.sell = sell;
