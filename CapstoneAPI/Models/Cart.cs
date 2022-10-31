@@ -7,6 +7,11 @@ namespace CapstoneAPI.Models
     {
         [Key]
         public int CartId { get; set; }
+        public string? EmailId { get; set; }
+        [ForeignKey("EmailId")]
+        public virtual Register? Register { get; set; }
+        [Required]
+        public string SellerEmailId { get; set; }
         [Required]
         public int ProductId { get; set; }
 

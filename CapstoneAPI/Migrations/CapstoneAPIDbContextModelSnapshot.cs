@@ -69,6 +69,9 @@ namespace CapstoneAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
+                    b.Property<string>("EmailId")
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("ProductBrand")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -99,10 +102,16 @@ namespace CapstoneAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("SellerEmailId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ShippingCost")
                         .HasColumnType("int");
 
                     b.HasKey("CartId");
+
+                    b.HasIndex("EmailId");
 
                     b.ToTable("Cart");
                 });
@@ -183,6 +192,10 @@ namespace CapstoneAPI.Migrations
                     b.Property<bool>("ReturnStatus")
                         .HasColumnType("bit");
 
+                    b.Property<string>("SellerEmailId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ShippingCost")
                         .HasColumnType("int");
 
@@ -194,6 +207,71 @@ namespace CapstoneAPI.Migrations
                     b.HasIndex("EmailId");
 
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("CapstoneAPI.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+
+                    b.Property<string>("AdditonalProductImage1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdditonalProductImage2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailId")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("NoOfRatings")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductBrand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ProductDescription")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("ProductImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ProductPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<float>("Rating")
+                        .HasColumnType("real");
+
+                    b.Property<int>("ShippingCost")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("EmailId");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("CapstoneAPI.Models.Register", b =>
@@ -263,6 +341,9 @@ namespace CapstoneAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListId"), 1L, 1);
 
+                    b.Property<string>("EmailId")
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("ProductBrand")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -293,15 +374,30 @@ namespace CapstoneAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("SellerEmailId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ShippingCost")
                         .HasColumnType("int");
 
                     b.HasKey("WishListId");
 
+                    b.HasIndex("EmailId");
+
                     b.ToTable("Wishlist");
                 });
 
             modelBuilder.Entity("CapstoneAPI.Models.Address", b =>
+                {
+                    b.HasOne("CapstoneAPI.Models.Register", "Register")
+                        .WithMany()
+                        .HasForeignKey("EmailId");
+
+                    b.Navigation("Register");
+                });
+
+            modelBuilder.Entity("CapstoneAPI.Models.Cart", b =>
                 {
                     b.HasOne("CapstoneAPI.Models.Register", "Register")
                         .WithMany()
@@ -322,6 +418,24 @@ namespace CapstoneAPI.Migrations
                 });
 
             modelBuilder.Entity("CapstoneAPI.Models.Order", b =>
+                {
+                    b.HasOne("CapstoneAPI.Models.Register", "Register")
+                        .WithMany()
+                        .HasForeignKey("EmailId");
+
+                    b.Navigation("Register");
+                });
+
+            modelBuilder.Entity("CapstoneAPI.Models.Product", b =>
+                {
+                    b.HasOne("CapstoneAPI.Models.Register", "Register")
+                        .WithMany()
+                        .HasForeignKey("EmailId");
+
+                    b.Navigation("Register");
+                });
+
+            modelBuilder.Entity("CapstoneAPI.Models.Wishlist", b =>
                 {
                     b.HasOne("CapstoneAPI.Models.Register", "Register")
                         .WithMany()

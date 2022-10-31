@@ -47,6 +47,10 @@ namespace CapstoneAPI.Models
         public virtual ICollection<DeliveryPincode> DeliveryPincode { get; set; }
         [NotMapped]
         public virtual ICollection<Order> Order { get; set; }
+        [NotMapped]
+        public virtual ICollection<Cart> Cart { get; set; }
+        [NotMapped]
+        public virtual ICollection<Wishlist> Wishlist { get; set; }
 
     }
 }

@@ -5,30 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CapstoneAPI.Migrations
 {
-    public partial class Capstone_V5 : Migration
+    public partial class Capstone_V9 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Cart",
-                columns: table => new
-                {
-                    CartId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ProductBrand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductPrice = table.Column<int>(type: "int", nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    ShippingCost = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cart", x => x.CartId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Register",
                 columns: table => new
@@ -51,26 +31,6 @@ namespace CapstoneAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Wishlist",
-                columns: table => new
-                {
-                    WishListId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ProductBrand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductPrice = table.Column<int>(type: "int", nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    ShippingCost = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Wishlist", x => x.WishListId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Address",
                 columns: table => new
                 {
@@ -88,6 +48,33 @@ namespace CapstoneAPI.Migrations
                     table.PrimaryKey("PK_Address", x => x.AddrId);
                     table.ForeignKey(
                         name: "FK_Address_Register_EmailId",
+                        column: x => x.EmailId,
+                        principalTable: "Register",
+                        principalColumn: "EmailId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    CartId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmailId = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    SellerEmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductBrand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ShippingCost = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.CartId);
+                    table.ForeignKey(
+                        name: "FK_Cart_Register_EmailId",
                         column: x => x.EmailId,
                         principalTable: "Register",
                         principalColumn: "EmailId");
@@ -120,6 +107,7 @@ namespace CapstoneAPI.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmailId = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    SellerEmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProductType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -144,9 +132,71 @@ namespace CapstoneAPI.Migrations
                         principalColumn: "EmailId");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmailId = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    ProductType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductBrand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdditonalProductImage1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdditonalProductImage2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ShippingCost = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantity = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<float>(type: "real", nullable: false),
+                    NoOfRatings = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Product_Register_EmailId",
+                        column: x => x.EmailId,
+                        principalTable: "Register",
+                        principalColumn: "EmailId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Wishlist",
+                columns: table => new
+                {
+                    WishListId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmailId = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    SellerEmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductBrand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ShippingCost = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wishlist", x => x.WishListId);
+                    table.ForeignKey(
+                        name: "FK_Wishlist_Register_EmailId",
+                        column: x => x.EmailId,
+                        principalTable: "Register",
+                        principalColumn: "EmailId");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_EmailId",
                 table: "Address",
+                column: "EmailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cart_EmailId",
+                table: "Cart",
                 column: "EmailId");
 
             migrationBuilder.CreateIndex(
@@ -157,6 +207,16 @@ namespace CapstoneAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Order_EmailId",
                 table: "Order",
+                column: "EmailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_EmailId",
+                table: "Product",
+                column: "EmailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wishlist_EmailId",
+                table: "Wishlist",
                 column: "EmailId");
         }
 
@@ -173,6 +233,9 @@ namespace CapstoneAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Product");
 
             migrationBuilder.DropTable(
                 name: "Wishlist");

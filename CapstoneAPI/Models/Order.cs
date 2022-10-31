@@ -10,7 +10,10 @@ namespace CapstoneAPI.Models
         public string? EmailId { get; set; }
         [ForeignKey("EmailId")]
         public virtual Register? Register { get; set; }
+        [Required]
+        public string SellerEmailId { get; set; }
 
+        [Required]
         public int ProductId { get; set; }
 
         [Required]
@@ -41,7 +44,6 @@ namespace CapstoneAPI.Models
 
         [Required]
         public int TotalPrice { get; set; }
-        
         public string DeliveryStatus { get; set; }
         public bool ReturnStatus { get; set; }
 
