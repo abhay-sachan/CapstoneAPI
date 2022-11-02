@@ -12,6 +12,7 @@ namespace CapstoneAPI.Controllers
     {
         readonly CapstoneAPIDbContext db;
         readonly ICustomer cust;
+
         public CustomerController(CapstoneAPIDbContext db, ICustomer cust)
         {
             this.db = db;
@@ -23,6 +24,8 @@ namespace CapstoneAPI.Controllers
         {
             return cust.AddOrder(o);
         }
+
+
 
         [HttpGet]
         [Route("/api/Customer/ShowAllOrders/{EmailId}")]
@@ -200,6 +203,13 @@ namespace CapstoneAPI.Controllers
         public bool CheckPinCode(int Pincode, string EmailId)
         {
             return cust.CheckPinCode(Pincode, EmailId);
+        }
+
+        [HttpGet]
+        [Route("/api/Customer/GetProductById/{productId}")]
+        public Product GetProductById(int productId)
+        {
+            return cust.GetProductById(productId);
         }
     }
 }

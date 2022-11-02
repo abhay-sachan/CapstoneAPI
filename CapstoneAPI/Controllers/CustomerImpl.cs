@@ -35,7 +35,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -53,7 +53,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -71,7 +71,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -89,7 +89,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -108,7 +108,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
 
@@ -116,8 +116,8 @@ namespace CapstoneAPI.Controllers
 
         public bool CheckPinCode(int Pincode, string EmailId)
         {
-            var oldata = db.DeliveryPincode.Where(x => x.EmailId == EmailId && x.PinCode == Pincode);
-            if(oldata==null)
+            var oldata = db.DeliveryPincode.Where(x => x.EmailId == EmailId && x.PinCode == Pincode).FirstOrDefault();
+            if (oldata == null)
             {
                 return false;
             }
@@ -147,7 +147,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -171,7 +171,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -190,7 +190,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -209,7 +209,7 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -220,11 +220,11 @@ namespace CapstoneAPI.Controllers
             {
                 var olddata = db.Order.Where(c => c.OrderId == OrderId).FirstOrDefault();
                 return olddata.ReturnStatus;
-                
+
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
@@ -245,14 +245,14 @@ namespace CapstoneAPI.Controllers
             }
             catch
             {
-                throw;
+                return false;
             }
             return false;
         }
 
         public List<Cart> ShowAllCart(string EmailId)
         {
-            return db.Cart.Where(x=>x.EmailId == EmailId).ToList();
+            return db.Cart.Where(x => x.EmailId == EmailId).ToList();
         }
 
         public List<Order> ShowAllOrders(string EmailId)
@@ -262,7 +262,7 @@ namespace CapstoneAPI.Controllers
 
         public List<Product> ShowAllProducts()
         {
-            return db.Product.ToList();
+            return db.Product.Where(x => x.ProductQuantity > 0).ToList();
         }
 
         public List<Address> ShowAllShippingAddress(string EmailId)
@@ -284,7 +284,7 @@ namespace CapstoneAPI.Controllers
 
         public string ShowOrderStatus(int OrderId)
         {
-            var olddata = db.Order.Where(x=> x.OrderId == OrderId).FirstOrDefault();
+            var olddata = db.Order.Where(x => x.OrderId == OrderId).FirstOrDefault();
             return olddata.DeliveryStatus;
         }
 
@@ -297,7 +297,14 @@ namespace CapstoneAPI.Controllers
         {
             return db.Product.Where(x => x.ProductName == ProdName).ToList();
         }
+
+        public Product GetProductById(int productId)
+        {
+            return db.Product.Where(x => x.ProductId == productId).FirstOrDefault();
+        }
+
     }
+
 
 }
 

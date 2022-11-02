@@ -15,7 +15,7 @@ namespace CapstoneAPI.Controllers
         List<Product> ShowProductByName(string ProdName);
 
         bool AddShippingAddress(Address a);
-        
+
         bool AddToCart(Cart c);
 
         bool AddToWishList(Wishlist w);
@@ -23,8 +23,8 @@ namespace CapstoneAPI.Controllers
         bool GiveProductRating(int ProdId, float rating);
 
         string ShowOrderStatus(int OrderId);
-        
-        bool CancelOrReturnOrder (int OrderId, string NewStatus);
+
+        bool CancelOrReturnOrder(int OrderId, string NewStatus);
 
         bool GetReturnStatus(int OrderId);
 
@@ -44,6 +44,8 @@ namespace CapstoneAPI.Controllers
         List<Address> ShowAllShippingAddress(string EmailId);
 
         bool CheckPinCode(int Pincode, string EmailId);
+
+        Product GetProductById(int productId);
 
 
     }

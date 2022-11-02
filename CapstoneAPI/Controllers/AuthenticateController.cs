@@ -21,7 +21,7 @@ namespace CapstoneAPI.Controllers
 
         [HttpPut]
         [Route("/api/Authenticate/UpdatePwd/{email}/{oldp}/{newp}")]
-        public bool Updatepassword(string email, string oldp, string newp)
+        public bool ChangePassword(string email, string oldp, string newp)
         {
 
             return auth.ChangePassword(email, oldp, newp);
