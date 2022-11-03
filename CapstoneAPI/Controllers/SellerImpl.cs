@@ -82,6 +82,11 @@ namespace CapstoneAPI.Controllers
             return db.Product.Where(x => x.EmailId == EmailId).ToList();
         }
 
+        public Order ShowOrderById(int OrderId)
+        {
+            return db.Order.Where(x => x.OrderId == OrderId).FirstOrDefault();
+        }
+
         public bool UpdateDeliveryStatus(int OrderId, string delstatus)
         {
             try

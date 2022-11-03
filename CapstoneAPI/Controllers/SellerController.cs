@@ -77,5 +77,13 @@ namespace CapstoneAPI.Controllers
         {
             return sell.UpdateReturnStatus(OrderId, retstatus);
         }
+
+        [HttpGet]
+        [Route("/api/Seller/ShowOrderById/{OrderId}")]
+
+        public Order ShowOrderById(int OrderId)
+        {
+            return sell.ShowOrderById(OrderId);
+        }
     }
 }

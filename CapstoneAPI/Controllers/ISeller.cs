@@ -20,5 +20,7 @@ namespace CapstoneAPI.Controllers
 
         bool UpdateReturnStatus(int OrderId, bool retstatus);
 
+        Order ShowOrderById(int OrderId);
     }
+
 }
