@@ -262,7 +262,7 @@ namespace CapstoneAPI.Controllers
 
         public List<Product> ShowAllProducts()
         {
-            return db.Product.Where(x => x.ProductQuantity > 0).ToList();
+            return db.Product.ToList();
         }
 
         public List<Address> ShowAllShippingAddress(string EmailId)
